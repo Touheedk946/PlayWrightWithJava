@@ -11,12 +11,18 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 public class LoginTest extends BaseTest {
 
     @Test
-    void loginTest() {
-            page.navigate("https://www.google.com/?zx=1768639136423&no_sw_cr=1");
-            page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Sign in")).click();
-            page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Email or phone")).fill("touheedk946@gmail.com");
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Next")).click();
-            assertThat(page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Couldn’t sign you in")).locator("span")).isVisible();
-        }
+    void test() {
+        page.navigate("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Username")).click();
+        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Username")).fill("Admin");
+        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Username")).press("Tab");
+        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Password")).fill("admin123");
+        page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("Password")).press("Enter");
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Login")).click();
+        page.navigate("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+
+       // assertThat(page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Dashboard"))).isVisible();
+    }
+
 
 }
